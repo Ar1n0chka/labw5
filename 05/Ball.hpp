@@ -9,17 +9,16 @@ public:
     void setVelocity(const Velocity& velocity);
     Velocity getVelocity() const;
     void draw(Painter& painter) const;
-    void setCenter(const Point& center);
+    void setCenter(const Point& _center);
     Point getCenter() const;
     double getRadius() const;
     double getMass() const;
     bool getIsCollidable() const;
 private:
-    double mass;
     double radius;
+    double mass;
     Point center;
     Velocity velocity;
-    Painter painter;
     Color color;
     bool isCollidable;
-};  
+};

@@ -36,8 +36,8 @@ World::World(const std::string& worldFilePath) {
     Point center;
     Point velocity;
     double radius;
-
     Color color;
+
     bool isCollidable;
 
     // Здесь не хватает обработки ошибок, но на текущем
@@ -79,6 +79,7 @@ void World::show(Painter& painter) const {
     for (const Ball& ball : balls) {
         ball.draw(painter);
     }
+
     for (const Dust& dust : dusts) {
         if (dust.isAlive())
             dust.draw(painter);
@@ -101,12 +102,12 @@ void World::update(double time) {
      * длительность тика, сохраняем остаток в restTime
      * и обрабатываем на следующей итерации.
      */
-
+    
     // учитываем остаток времени, который мы не "доработали" при прошлом update
     time += restTime;
     const auto ticks = static_cast<size_t>(std::floor(time / timePerTick));
     restTime = time - double(ticks) * timePerTick;
-     for (Dust& dust : dusts)
+    for (Dust& dust : dusts)
     {
         dust.update();
     }

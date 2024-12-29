@@ -17,10 +17,9 @@ void Physics::update(std::vector<Ball>& balls, std::vector<Dust>& dusts, const s
         move(balls);
         move(dusts);
         collideWithBox(balls);
-        collideBalls(balls);
+        collideBalls(balls, dusts);
     }
 }
-
 
 void Physics::collideBalls(std::vector<Ball>& balls, std::vector<Dust> &dusts) const {
     for (auto a = balls.begin(); a != balls.end(); ++a) {
@@ -57,9 +56,10 @@ void Physics::collideBalls(std::vector<Ball>& balls, std::vector<Dust> &dusts) c
         }
     }
 }
+
 void Physics::collideWithBox(std::vector<Ball>& balls) const {
     for (Ball& ball : balls) {
-        if(ball.getIsCollidable())
+        if (ball.getIsCollidable())
         {
             const Point p = ball.getCenter();
             const double r = ball.getRadius();
@@ -81,16 +81,19 @@ void Physics::collideWithBox(std::vector<Ball>& balls) const {
     }
 }
 
-void Physics::move(std::vector<Ball>& balls) const {
-    for (Ball& ball : balls) {
+template <typename T>
+void Physics::move(std::vector<T>& balls) const {
+    for (T& ball : balls) {
         Point newPos =
             ball.getCenter() + ball.getVelocity().vector() * timePerTick;
         ball.setCenter(newPos);
     }
 }
 
-void Physics::processCollision(Ball& a, Ball& b, double distanceBetweenCenters2, std::vector<Dust>& dusts) const {
-    // нормированный вектор столкновения
+
+
+void Physics::processCollision(Ball& a, Ball& b,
+                               double distanceBetweenCenters2, std::vector<Dust>& dusts) const {
     if (a.getIsCollidable() && b.getIsCollidable())
     {
         const Point normal =
@@ -99,7 +102,6 @@ void Physics::processCollision(Ball& a, Ball& b, double distanceBetweenCenters2,
         // получаем скорость в векторном виде
         const Point aV = a.getVelocity().vector();
         const Point bV = b.getVelocity().vector();
-
         // коэффициент p учитывает скорость обоих мячей
         const double p =
             2 * (dot(aV, normal) - dot(bV, normal)) / (a.getMass() + b.getMass());

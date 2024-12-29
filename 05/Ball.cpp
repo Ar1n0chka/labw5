@@ -1,14 +1,11 @@
-#define _USE_MATH_DEFINES
-#include <cmath>
 #include "Ball.hpp"
-
+#include <cmath>
 
 /**
  * Задает скорость объекта
  * @param velocity новое значение скорости
  */
 void Ball::setVelocity(const Velocity& _velocity) {
-    // TODO: место для доработки
     velocity = _velocity;
 }
 
@@ -29,7 +26,6 @@ Velocity Ball::getVelocity() const {
  * @param painter контекст отрисовки
  */
 void Ball::draw(Painter& painter) const {
-    // TODO: место для доработки
     painter.draw(center, radius, color);
 }
 
@@ -38,7 +34,6 @@ void Ball::draw(Painter& painter) const {
  * @param center новый центр объекта
  */
 void Ball::setCenter(const Point& _center) {
-    // TODO: место для доработки
     center = _center;
 }
 
@@ -46,7 +41,6 @@ void Ball::setCenter(const Point& _center) {
  * @return центр объекта
  */
 Point Ball::getCenter() const {
-    // TODO: место для доработки
     return center;
 }
 
@@ -56,7 +50,6 @@ Point Ball::getCenter() const {
  * не требуется
  */
 double Ball::getRadius() const {
-    // TODO: место для доработки
     return radius;
 }
 
@@ -68,18 +61,24 @@ double Ball::getRadius() const {
  * эквивалентна объему: PI * radius^3 * 4. / 3.
  */
 double Ball::getMass() const {
-    // TODO: место для доработки
-    return M_PI * pow(radius,3) * 4.0 / 3.0;
+    return M_PI*pow(radius,3)*4./3.;
+}
+/**
+ * @brief Возвращает true или flase.
+ * @details Информирует о том подвергается ли объект столкновениям с другими объектами.
+ */
+bool Ball::getIsCollidable() const
+{
+    return isCollidable;
 }
 
 /**
- * @brief Возвращает тру или фолс
- * @details возвращает иформацию о столкновении шара
+ * @brief Конструктор объекта Ball
+ * @param _center координаты центра шара
+ * @param _velocity вектор скорости шара
+ * @param _color цвет шара
+ * @param _radius радиус шара 
  */
-bool Ball::getIsCollidable() const {
-
-    return isCollidable; 
-}
 Ball::Ball(Point _center, Velocity _velocity, Color _color, double _radius, bool _isCollidable)
 {
     center = _center;
@@ -87,6 +86,5 @@ Ball::Ball(Point _center, Velocity _velocity, Color _color, double _radius, bool
     color = _color;
     radius = _radius;
     isCollidable = _isCollidable;
-
 
 }

@@ -10,10 +10,11 @@ class Physics {
     void update(std::vector<Ball>& balls, std::vector<Dust>& dusts, size_t ticks) const;
     friend class World;
   private:
-    void collideBalls(std::vector<Ball>& balls, std::vector<Dust>& dusts) const;
+    void collideBalls(std::vector<Ball>& balls, std::vector<Dust> &dusts) const;
     void collideWithBox(std::vector<Ball>& balls) const;
-    void move(std::vector<Ball>& balls) const;
-    void processCollision(Ball& a, Ball& b, double distanceBetweenCenters2, std::vector<Dust>& dusts) const;
+    template <typename T>
+    void move(std::vector<T>& balls) const;
+    void processCollision(Ball& a, Ball& b, double distanceBetweenCenters2, std::vector<Dust>&dusts) const;
 
   private:
     Point topLeft;
