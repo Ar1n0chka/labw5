@@ -1,5 +1,7 @@
-#include "Ball.hpp"
+#define _USE_MATH_DEFINES
 #include <cmath>
+#include "Ball.hpp"
+
 
 /**
  * Задает скорость объекта
@@ -28,7 +30,7 @@ Velocity Ball::getVelocity() const {
  */
 void Ball::draw(Painter& painter) const {
     // TODO: место для доработки
-    
+    painter.draw(center, radius, color);
 }
 
 /**
