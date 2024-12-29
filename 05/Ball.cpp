@@ -5,8 +5,9 @@
  * Задает скорость объекта
  * @param velocity новое значение скорости
  */
-void Ball::setVelocity(const Velocity& velocity) {
+void Ball::setVelocity(const Velocity& _velocity) {
     // TODO: место для доработки
+    velocity = _velocity;
 }
 
 /**
@@ -14,7 +15,7 @@ void Ball::setVelocity(const Velocity& velocity) {
  */
 Velocity Ball::getVelocity() const {
     // TODO: место для доработки
-    return {};
+    return velocity;
 }
 
 /**
@@ -27,14 +28,16 @@ Velocity Ball::getVelocity() const {
  */
 void Ball::draw(Painter& painter) const {
     // TODO: место для доработки
+    
 }
 
 /**
  * Задает координаты центра объекта
  * @param center новый центр объекта
  */
-void Ball::setCenter(const Point& center) {
+void Ball::setCenter(const Point& _center) {
     // TODO: место для доработки
+    center = _center;
 }
 
 /**
@@ -42,7 +45,7 @@ void Ball::setCenter(const Point& center) {
  */
 Point Ball::getCenter() const {
     // TODO: место для доработки
-    return {};
+    return center;
 }
 
 /**
@@ -52,7 +55,7 @@ Point Ball::getCenter() const {
  */
 double Ball::getRadius() const {
     // TODO: место для доработки
-    return {};
+    return radius;
 }
 
 /**
@@ -64,5 +67,23 @@ double Ball::getRadius() const {
  */
 double Ball::getMass() const {
     // TODO: место для доработки
-    return {};
+    return M_PI * pow(radius,3) * 4.0 / 3.0;
+}
+
+/**
+ * @brief Возвращает тру или фолс
+ * @details возвращает иформацию о столкновении шара
+ */
+bool Ball::getIsCollidable() const {
+
+    return isCollidable; 
+}
+Ball::Ball(Point _center, Velocity _velocity, Color _color, double _radius, bool _isCollidable){
+    center = _center;
+    velocity = _velocity;
+    color = _color;
+    radius = _radius;
+    isCollidable = _isCollidable;
+
+
 }
