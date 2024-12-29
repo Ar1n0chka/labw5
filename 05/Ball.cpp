@@ -80,7 +80,8 @@ bool Ball::getIsCollidable() const {
 
     return isCollidable; 
 }
-Ball::Ball(Point _center, Velocity _velocity, Color _color, double _radius, bool _isCollidable){
+Ball::Ball(Point _center, Velocity _velocity, Color _color, double _radius, bool _isCollidable)
+{
     center = _center;
     velocity = _velocity;
     color = _color;
